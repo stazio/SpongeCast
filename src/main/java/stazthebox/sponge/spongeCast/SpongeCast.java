@@ -25,11 +25,7 @@ import java.util.Map;
  * Created by staz on 8/22/16.
  */
 
-@Plugin(id = "spongecast",
-				name = "Sponge Cast",
-				description = "A simple automated messaging application",
-				url = "http://stazthebox.cf/spongecast",
-				version = "1.0", authors = {"Staz The Box"})
+@Plugin(id = "spongecast")
 public class SpongeCast
 {
 	private static SpongeCast INSTANCE;
@@ -61,12 +57,6 @@ public class SpongeCast
 	public void gameInit(GameInitializationEvent event) {
 		groups.values().forEach(MessageGroup::begin);
 	}
-
-@Listener
-public void onGameStop(GameStoppingServerEvent event) throws IOException
-{
-	config.save();
-}
 
 
 	public static SpongeCast getInstance()

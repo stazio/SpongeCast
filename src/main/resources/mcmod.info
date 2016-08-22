@@ -1,0 +1,11 @@
+[{
+    "modid": "spongecast",
+    "name": "Sponge Cast",
+    "version": "1.0",
+    "description": "This is a very cool plugin I made for me",
+    "authorList": [
+        "Staz The Box"
+    ],
+    "url" : "http://git.stazthebox.cf/spongecast",
+    "dependencies": []
+}]

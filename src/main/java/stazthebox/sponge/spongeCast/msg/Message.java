@@ -22,10 +22,24 @@ public class Message
 	private String permission = "";
 
 	@Setting(value = "pre-delay", comment = "After the post-delay of the last message, how long should we wait before sending this message.")
-	private int preDelay = 5;
+	private int preDelay = -1;
 
 	@Setting(value = "post-delay", comment = "How long should we wait after sending the message before moving on to the next one?")
-	private int postDelay = 5;
+	private int postDelay = 0;
+
+	public int getDelay()
+	{
+		return preDelay < 0 ? delay : preDelay;
+	}
+
+	public Message setDelay(int delay)
+	{
+		this.delay = delay;
+		return this;
+	}
+
+	@Setting(value = "delay", comment = "How long should we wait in-between messages (alias of pre-delay)")
+	private int delay = 10;
 
 	@Setting(value = "next", comment = "If we are in the next mode, what should be the next message played?")
 	private int nextMessageInt = 1;
@@ -54,7 +68,7 @@ public class Message
 
 	public int getPreDelay()
 	{
-		return preDelay;
+		return (preDelay == -1 ? delay : preDelay);
 	}
 
 	public Message setPreDelay(int preDelay)
@@ -87,7 +101,7 @@ public class Message
 
 	public Task.Builder createPreMessageTask(MessageGroup owner)
 	{
-		return Task.builder().execute(task->onMessage(task, owner)).delay(preDelay, TimeUnit.SECONDS);
+		return Task.builder().execute(task->onMessage(task, owner)).delay(getDelay(), TimeUnit.SECONDS);
 	}
 
 	public void onMessage(Task task, MessageGroup owner) {
