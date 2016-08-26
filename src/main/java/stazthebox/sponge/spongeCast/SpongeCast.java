@@ -36,11 +36,11 @@ public class SpongeCast
 	private Path configFolder;
 
 	private SimpleConfig config;
-	private HashMap<String, BroadcastGroup> groups = new HashMap<>();
+    private HashMap<String, BroadcastGroup> groups = new HashMap<>();
 
-	public static SpongeCast getInstance() {
-		return INSTANCE;
-	}
+    public static SpongeCast getInstance() {
+        return INSTANCE;
+    }
 
 	@Listener
 	public void preInit(GamePreInitializationEvent event) throws ObjectMappingException, IOException
@@ -50,14 +50,14 @@ public class SpongeCast
 		config.load();
 
 
-		Map<Object, ? extends CommentedConfigurationNode> map = config.getConfigRoot().getNode("messages").getChildrenMap();
-		for (Object key : map.keySet()) {
-			groups.put(String.valueOf(key), map.get(key).getValue(TypeToken.of(BroadcastGroup.class)));
-		}
-	}
+        Map<Object, ? extends CommentedConfigurationNode> map = config.getConfigRoot().getNode("messages").getChildrenMap();
+        for (Object key : map.keySet()) {
+            groups.put(String.valueOf(key), map.get(key).getValue(TypeToken.of(BroadcastGroup.class)));
+        }
+    }
 
 	@Listener
 	public void gameInit(GameInitializationEvent event) {
-		groups.values().forEach(BroadcastGroup::begin);
-	}
+        groups.values().forEach(BroadcastGroup::begin);
+    }
 }

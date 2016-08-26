@@ -97,11 +97,10 @@ public class BroadcastGroup
                         // I wrote that at night, don't judge me random nerd who decided it would be a good idea to try and understand this
                         // mistake of a plugin                    That went past the 180 character line, what you gonna do bro???--^
                         throw new NextMessageOutOfBoundsException(next + " is not a valid message...");
-                    } catch (NextMessageOutOfBoundsException e)
-					{
-						e.printStackTrace();
-					}
-				}else {
+                    } catch (NextMessageOutOfBoundsException e) {
+                        e.printStackTrace();
+                    }
+                }else {
 					message = messages.get(next);
 					activeTask = message.createPreMessageTask(this).submit(plugin);
 				}
@@ -263,6 +262,11 @@ public class BroadcastGroup
                             break;
                         case "underline":
                             textStyles[i] = TextStyles.UNDERLINE;
+                            break;
+                        case "obfuscated":
+                        case "random":
+                            textStyles[i] = TextStyles.OBFUSCATED;
+                            break;
                     }
                 }
                 textFormat = textFormat.style(TextStyles.of(textStyles));
